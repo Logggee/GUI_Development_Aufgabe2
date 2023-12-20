@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -28,7 +27,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         ArrayList<ScoreItem> scoreItems = new ArrayList<ScoreItem>();
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.score_board);
+        setContentView(R.layout.activity_score_board);
 
         //create toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -80,8 +79,11 @@ public class ScoreBoardActivity extends AppCompatActivity {
     private ArrayAdapter<String> createListItems(ArrayList<ScoreItem> scoreItems, ListView listView){
         ArrayList<String> listItems = new ArrayList<String>();
         Iterator<ScoreItem> iterator = scoreItems.iterator();
-        while(iterator.hasNext()){
-            listItems.add("\n" + iterator.next().toString());
+
+        for(int i=0; i<5; i++){
+            if(i < scoreItems.size()) {
+                listItems.add("\n" + scoreItems.get(scoreItems.size() - i - 1).toString());
+            }
         }
         ArrayAdapter<String> model = new ArrayAdapter<String>(this, R.layout.list_items, listItems);
         listView.setAdapter(model);
