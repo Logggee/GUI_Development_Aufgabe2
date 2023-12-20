@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -46,8 +47,9 @@ public class FileIOScores {
         ArrayList<ScoreItem> list = new ArrayList<ScoreItem>();
         String content="";
         try {
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(context.openFileInput(fName)));
+            FileInputStream stream = context.openFileInput(fName);
+            InputStreamReader input = new InputStreamReader(stream);
+            BufferedReader in = new BufferedReader(input);
             String line;
             int [] dateNumbers = new int[3];
             int [] timeNumbers = new int[3];
@@ -105,7 +107,7 @@ public class FileIOScores {
                 PrintWriter p = new PrintWriter(
                         new OutputStreamWriter(
                           context.openFileOutput("File1.txt", Context.MODE_PRIVATE)));
-                p.println("");
+                //p.println("");
                 p.close();
                 content.add("File1.txt");
 
@@ -150,8 +152,5 @@ public class FileIOScores {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

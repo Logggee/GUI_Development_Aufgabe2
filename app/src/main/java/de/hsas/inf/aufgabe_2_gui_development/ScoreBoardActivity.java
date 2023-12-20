@@ -17,7 +17,8 @@ import java.util.Iterator;
 
 public class ScoreBoardActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button buttonDelete;
+    private FileIOScores fileIO = new FileIOScores(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +28,10 @@ public class ScoreBoardActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        button = findViewById(R.id.deleteScores);
-        button.setOnClickListener(view->{
-
+        //Listener for delete Button, deletes all listet scores in the view and the score file
+        buttonDelete = findViewById(R.id.deleteScores);
+        buttonDelete.setOnClickListener(view->{
+            fileIO.eraseContent("File1.txt");
         });
 
         //Read Content of the txt scores file
@@ -55,14 +57,16 @@ public class ScoreBoardActivity extends AppCompatActivity {
         return false;
     }
 
-    private void readData(){
-        FileIOScores fileIO = new FileIOScores(this);
-        ArrayList<ScoreItem> scoreItems = fileIO.readScores("File1.txt");
+    private ArrayList<ScoreItem> readData(){
+        fileIO.printFileContent("File1.txt");
+        ArrayList<ScoreItem> scoreItems = new ArrayList<ScoreItem>();
+        scoreItems = fileIO.readScores("File1.txt");
         Iterator<ScoreItem> iterator = scoreItems.iterator();
         Log.i("Results", scoreItems.toString());
         while(iterator.hasNext()){
             Log.i("Results", "Test");
             Log.i("Results", iterator.next().toString());
         }
+        return scoreItems;
     }
 }
