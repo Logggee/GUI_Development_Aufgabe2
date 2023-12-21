@@ -11,6 +11,7 @@ public class Game {
     private ImageButton[] imageButtons = new ImageButton[14];
     private Button playButton;
     private int treasure;
+    private int ghost;
     private int gameCounter = 0;
     private  boolean gameEnd = false;
     private LocalDateTime timeStamp;
@@ -43,6 +44,11 @@ public class Game {
                 //set image and end the game if the treasure was found
                 else if(finalI == treasure){
                     imageButtons[finalI].setImageResource(R.mipmap.treasure_foreground);
+                    gameEnd = true;
+                }
+                //set image and end the game if the ghost was found
+                else if(finalI == ghost){
+                    imageButtons[finalI].setImageResource(R.mipmap.ghost_foreground);
                     gameEnd = true;
                 }
                 //set image when no treasure was found
@@ -82,6 +88,11 @@ public class Game {
             }
             //generate a random int between 0 and 13 for the id which the treasure is hided
             treasure = new Random().nextInt(14);
+            //generate a random int between 0 and 13 for the id which the ghost is hidden, neets to be a diffrent int then treasure
+            do{
+                ghost =  new Random().nextInt(14);
+            }
+            while(ghost == treasure);
             //disable the play button when pressed
             playButton.setEnabled(false);
             //enable all image buttons
