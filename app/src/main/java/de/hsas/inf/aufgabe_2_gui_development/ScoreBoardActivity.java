@@ -39,7 +39,9 @@ public class ScoreBoardActivity extends AppCompatActivity {
         //Listener for delete Button, deletes all listet scores in the view and the score file
         buttonDelete = findViewById(R.id.deleteScores);
         buttonDelete.setOnClickListener(view->{
+            //delete content of txt file
             fileIO.eraseContent("File1.txt");
+            //delete all data in the model
             model.clear();
             model.notifyDataSetChanged();
         });
@@ -58,6 +60,7 @@ public class ScoreBoardActivity extends AppCompatActivity {
         return true;
     }
 
+    //Leave scoreBoard activity and go to Game activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         if(item.getItemId() == R.id.itemPlayGame){
@@ -69,9 +72,12 @@ public class ScoreBoardActivity extends AppCompatActivity {
         return false;
     }
 
+    //function for reading the scores of the txt file
     private ArrayList<ScoreItem> readScores(){
+        //print out the scores on the terminal
         fileIO.printFileContent("File1.txt");
         ArrayList<ScoreItem> scoreItems = new ArrayList<ScoreItem>();
+        //read out scores and safe them in scoreItems ArrayList
         scoreItems = fileIO.readScores("File1.txt");
         return scoreItems;
     }
