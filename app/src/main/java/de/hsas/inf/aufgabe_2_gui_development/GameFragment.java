@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 public class GameFragment extends Fragment {
     private final ImageButton[] imageButtons = new ImageButton[14];
     private Button playButton;
+    private GameViewModel gameViewModel;
     public GameFragment(){
 
     }
