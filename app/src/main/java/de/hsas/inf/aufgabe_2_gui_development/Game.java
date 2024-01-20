@@ -21,7 +21,6 @@ public class Game {
         this.playButton = playButton;
         this.imageButtons = imageButtons;
         this.fileIO = fileIO;
-        fileIO.list();
     }
 
     public void createImageButtonsListeners(){
