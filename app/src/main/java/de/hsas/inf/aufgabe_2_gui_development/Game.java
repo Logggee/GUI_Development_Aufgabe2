@@ -16,6 +16,7 @@ public class Game {
     private  boolean gameEnd = false;
     private LocalDateTime timeStamp;
     private FileIOScores fileIO;
+    private GameViewModel gameViewModel;
 
     public Game(Button playButton, ImageButton[] imageButtons, FileIOScores fileIO){
         this.playButton = playButton;
