@@ -38,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
         //Create the launcher for switching to the sub activity
         createScoreBoardLauncher();
         //Open the game fragment inside the main activity
-        openFragment();
+        openGameFragment();
     }
 
-    public void openFragment(){
+    //Open the game fragment
+    public void openGameFragment(){
+        //new instance of GameFragment
         gameFragment = new GameFragment();
+        //replace the frame layout with the game fragment
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.fragment_frame, gameFragment);
         ft.commit();
