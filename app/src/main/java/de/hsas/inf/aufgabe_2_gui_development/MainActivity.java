@@ -31,15 +31,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
         //Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         //Create the launcher for switching to the sub activity
         createScoreBoardLauncher();
-
-        setContentView(R.layout.activity_main);
+        //Open the game fragment inside the main activity
         openFragment();
     }
 
