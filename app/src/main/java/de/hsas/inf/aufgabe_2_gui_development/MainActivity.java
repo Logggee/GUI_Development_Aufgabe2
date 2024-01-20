@@ -13,47 +13,41 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.widget.Button;
 import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    private GameFragment gameFragment;
     private ActivityResultContracts.StartActivityForResult contractScoreBoardActivity;
     private ActivityResultCallback<ActivityResult> resultCallbackScoreBoard;
     private Intent intentScoreBoard;
     private ActivityResultLauncher<Intent> scoreBoardLauncher;
-    private ImageButton[] imageButtons = new ImageButton[14];
-    private Button playButton;
 
     //Methode is called on app startup
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         //Set Toolbar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //Get the Playbutton by ID
-        playButton = findViewById(R.id.playButton);
         //Create the launcher for switching to the sub activity
         createScoreBoardLauncher();
 
-        //Create a array of the Imagebuttons by creating the IDs imageButton0 to imageButton13
-        int imageButtonID;
-        for(int i=0; i<14; i++){
-            String buttonIDString = "imageButton" + i;
-            imageButtonID = getResources().getIdentifier(buttonIDString, "id", getPackageName());
-            imageButtons[i] = findViewById(imageButtonID);
-        }
+        setContentView(R.layout.activity_main);
+        openFragment();
+    }
 
-        //Game object for creating the button listeners which are holding the games logic inside of them
-        FileIOScores fileIO = new FileIOScores(this);
-        Game game = new Game(playButton, imageButtons, fileIO);
-        game.createImageButtonsListeners();
-        game.createPlayButtonListener();
+    public void openFragment(){
+        gameFragment = new GameFragment();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_frame, gameFragment);
+        ft.commit();
     }
 
     //Methode is called on app startup to inflate the menu
