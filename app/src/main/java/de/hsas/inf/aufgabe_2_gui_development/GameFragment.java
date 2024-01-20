@@ -21,18 +21,25 @@ public class GameFragment extends Fragment {
         super.onCreate(saveInstanceState);
     }
 
+    //inflate the fragment and the UI inside it
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_game, container, false);
-        //Get the Playbutton by ID
-        playButton = rootView.findViewById(R.id.playButton);
+        return rootView;
+    }
 
-        //Create a array of the Imagebuttons by creating the IDs imageButton0 to imageButton13
+    //After the fragment is inflated you can use it
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        //Get the Playbutton by ID
+        playButton = view.findViewById(R.id.playButton);
+
+        //Create a array of the image buttons by creating the IDs imageButton0 to imageButton13
         int imageButtonID;
         for(int i=0; i<14; i++){
             String buttonIDString = "imageButton" + i;
             imageButtonID = getResources().getIdentifier(buttonIDString, "id", requireContext().getPackageName());
-            imageButtons[i] = rootView.findViewById(imageButtonID);
+            imageButtons[i] = view.findViewById(imageButtonID);
         }
 
         //Game object for creating the button listeners which are holding the games logic inside of them
@@ -40,6 +47,5 @@ public class GameFragment extends Fragment {
         Game game = new Game(playButton, imageButtons, fileIO);
         game.createImageButtonsListeners();
         game.createPlayButtonListener();
-        return rootView;
     }
 }
