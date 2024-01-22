@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "de.hsas.inf.aufgabe_2_gui_development"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "de.hsas.inf.aufgabe_2_gui_development"
-        minSdk = 33
-        targetSdk = 33
+        minSdk = 32
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 

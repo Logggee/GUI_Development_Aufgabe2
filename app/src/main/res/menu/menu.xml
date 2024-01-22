@@ -5,4 +5,7 @@
 
     <item android:title="@string/menuItem_scoreBoard"
         android:id ="@+id/itemScoreBoard" />
+
+    <item android:title="@string/menuItem_change_button"
+        android:id ="@+id/itemChangeButton" />
 </menu>

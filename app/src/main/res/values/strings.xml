@@ -5,4 +5,5 @@
     <string name="start_game">Hide Treasure</string>
     <string name="delete_scores">Delete Scores</string>
     <string name="activity_scoreBoard">Score Board</string>
+    <string name="menuItem_change_button">Change Button Style</string>
 </resources>

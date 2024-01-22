@@ -6,17 +6,15 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.widget.Button;
-import java.util.Random;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -69,8 +67,12 @@ public class MainActivity extends AppCompatActivity {
 
             //Launch scoreboard
             scoreBoardLauncher.launch(intentScoreBoard);
+        } else if (item.getItemId() == R.id.itemChangeButton) {
+            Drawable shapePlayButton = getResources().getDrawable(R.drawable.shape_play_button);
+            Button playButton = findViewById(R.id.playButton);
+            playButton.setBackground(shapePlayButton);
         }
-        return false;
+        return super.onOptionsItemSelected(item);
     }
 
     private void createScoreBoardLauncher(){
